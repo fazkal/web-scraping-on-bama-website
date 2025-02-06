@@ -1,4 +1,4 @@
-import re
+.import re
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -49,9 +49,9 @@ for link in link_list:
             text_tag=0
         cars_features.append(text_tag)
     print(cars_features)
-    for feature in cars_features:
-        cursor=connect_to_dbPrice.cursor()
-        cursor.execute('INSERT INTO Car_Choose VALUES(%i,\'%s\',%i,\'%s\',\'%s\',\'%s\',\'%s\')' %(cars_features[0],cars_features[1],cars_features[2],cars_features[3],cars_features[4],cars_features[5],cars_features[6]))
-        connect_to_dbPrice.commit()
-        connect_to_dbPrice.close()
+    cursor=connect_to_dbPrice.cursor()
+    sql="INSERT INTO Car_Choose(name, price, color,body,year of manufacture,Car operation,gearbox) VALUES (%s, %i,%s,%s,%i,%i,%s)"
+    cursor.executemany(sql,car_feaures)
+    connect_to_dbPrice.commit()
+    connect_to_dbPrice.close()
             
